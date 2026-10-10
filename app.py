@@ -29,7 +29,10 @@ st.write("Paste your notes and get a summary, key points and a quiz.")
 
 notes = st.text_area("Your notes", height=250)
 level = st.selectbox("Explain at level", ["Beginner", "Intermediate", "Expert"])
-
+uploaded = st.file_uploader("Or upload a .txt file", type=["txt"])
+if uploaded:
+    notes = uploaded.read().decode("utf-8")
+    
 if st.button("Generate") and notes.strip():
     with st.spinner("Thinking..."):
         prompt = f"""You are a helpful study assistant.
