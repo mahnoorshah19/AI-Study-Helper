@@ -28,10 +28,12 @@ st.title(" AI Study Helper")
 st.write("Paste your notes and get a summary, key points and a quiz.")
 
 notes = st.text_area("Your notes", height=250)
+level = st.selectbox("Explain at level", ["Beginner", "Intermediate", "Expert"])
 
 if st.button("Generate") and notes.strip():
     with st.spinner("Thinking..."):
         prompt = f"""You are a helpful study assistant.
+Explain everything at a {level} level.
 From the notes below, return ONLY valid JSON in this exact shape:
 {{
   "summary": "3-4 sentence summary",
